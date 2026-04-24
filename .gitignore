@@ -22,3 +22,20 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# .NET / C#
+bin/
+obj/
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+publish/
+*.nupkg
+*.snupkg
+launchSettings.json
+
+# Test results
+TestResults/
+coverage/
