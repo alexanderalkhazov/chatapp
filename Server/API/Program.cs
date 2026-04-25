@@ -1,3 +1,5 @@
+using API.Routes;
+using API.Services;
 using DAL;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,15 +19,18 @@ public abstract class Program
 
         builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+        builder.Services.AddScoped<IAuthService, AuthService>();
+        
         var app = builder.Build();
         
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
         }
-
+        
         app.UseHttpsRedirection();
+        
+        app.MapAllRoutes();
 
         app.Run();
     }
