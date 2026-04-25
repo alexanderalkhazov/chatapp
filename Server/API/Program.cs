@@ -1,7 +1,9 @@
 using DAL;
 using Microsoft.EntityFrameworkCore;
 
-internal class Program
+namespace API;
+
+public abstract class Program
 {
     public static void Main(string[] args)
     {
@@ -10,8 +12,8 @@ internal class Program
         builder.Services.AddOpenApi();
 
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-                       ?? throw new InvalidOperationException(
-                       "Connection string 'DefaultConnection' was not found.");
+                               ?? throw new InvalidOperationException(
+                                   "Connection string 'DefaultConnection' was not found.");
 
         builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
